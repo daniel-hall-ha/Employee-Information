@@ -37,6 +37,19 @@ function findEmployeeById(employeeId) {
         employee.id == employeeId
     )
 
-    if (foundEmployee) document.getElementById('employeeDetails').innerHTML = `<p>${foundEmployee.id}: ${foundEmployee.name} - ${foundEmployee.department} - ${foundEmployee.salary}</p>`
+    if (foundEmployee) document.getElementById('employeesDetails').innerHTML = `<p>${foundEmployee.id}: ${foundEmployee.name} - ${foundEmployee.department} - ${foundEmployee.salary}</p>`
     else document.getElementById('employeesDetails').innerHTML = `No employee is found with this ID!`
+}
+
+function findEmployeeBySalary(salary) {
+    const foundEmployees = employees.filter(employee =>
+        employee.salary > salary
+    )   
+
+    if (foundEmployees)
+        foundEmployees.forEach(employee => {
+            document.getElementById('employeesDetails').innerHTML += `<p>${employee.id}: ${employee.name} - ${employee.department} - ${employee.salary}</p>`;
+        })
+    else 
+        document.getElementById('employeesDetails').innerHTML = `No employee is found whose salary is greater than ${salary}`;
 }
